@@ -1,0 +1,81 @@
+﻿@model VideoGamePlatformViewModel
+@inject SignInManager<IdentityUserProfile> SignInManager
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["Title"] = "Index";
+    VideoGame columns = new VideoGame();
+}
+
+<h1>Index</h1>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => columns.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => columns.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => columns.ReleaseYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => columns.PersonalRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => columns.Platform)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => columns.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.VideoGames != null)
+        {
+            @foreach (var item in Model.VideoGames)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonalRating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Platform.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageId)
+                    </td>
+                    <td>
+                        @if (Model.ShowModifyLinks)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @if (Model.ShowModifyLinks)
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
