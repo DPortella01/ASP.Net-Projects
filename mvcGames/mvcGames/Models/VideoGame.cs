@@ -19,7 +19,7 @@ namespace mvcGames.Models
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Release Year")]
-        public DateTime ReleaseYear { get; set; }
+        public DateTime? ReleaseYear { get; set; }
 
         [Required]
         [Range(1, 5)]
