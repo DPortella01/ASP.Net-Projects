@@ -1,1 +1,3 @@
-1 MVC 6.0 Driver/Makes with Authorization using DropdownList with SelectList Extension.
+1 MVC 6.0 One-to-Many Driver/Makes with Authorization | DropdownList with SelectList Extension.
+<br>
+2 MVC 6.0 One-to-Many VideoGame/Platforms with Authorization | DropdownList with SelectList Extensions | Date of Birth and Image in the Profile | Upload images to Video Game
