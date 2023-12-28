@@ -1,0 +1,51 @@
+﻿@model DriverMakeViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["Title"] = "Index";
+    Make columns = new Make();
+}
+
+<h1>Index</h1>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => columns.MakeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Makes != null)
+        {
+            @foreach (var item in Model.Makes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MakeName)
+                    </td>
+                    <td>
+                        @if (Model.ShowModifyLinks)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @if (Model.ShowModifyLinks)
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }   
+    </tbody>
+</table>
